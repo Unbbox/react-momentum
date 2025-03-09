@@ -6,15 +6,18 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const rootElement = document.getElementById("root");
 
-if (!rootElement._reactRootContainer) {
-  const root = ReactDom.createRoot(rootElement);
-  root.render(
-    // <StrictMode>
-    <Router basename={import.meta.env.BASE_URL}>
-      <Routes>
-        <Route path={"/"} element={<App />} />
-      </Routes>
-    </Router>
-    // </StrictMode>
-  );
+let root = rootElement._reactRoot || null;
+
+if (!root) {
+  root = ReactDom.createRoot(rootElement);
+  rootElement._reactRoot = root;
 }
+root.render(
+  // <StrictMode>
+  <Router basename={import.meta.env.BASE_URL}>
+    <Routes>
+      <Route path={"/"} element={<App />} />
+    </Routes>
+  </Router>
+  // </StrictMode>
+);
