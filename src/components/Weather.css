@@ -1,0 +1,12 @@
+#weather {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  padding: 10px 10px;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 1.1em;
+}
