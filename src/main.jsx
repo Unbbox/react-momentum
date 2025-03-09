@@ -4,12 +4,17 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-ReactDom.createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Router>
+const rootElement = document.getElementById("root");
+
+if (!rootElement._reactRootContainer) {
+  const root = ReactDom.createRoot(rootElement);
+  root.render(
+    // <StrictMode>
+    <Router basename={import.meta.env.BASE_URL}>
       <Routes>
-        <Route path={`${process.env.PUBLIC_URL}/`} element={<App />} />
+        <Route path={"/"} element={<App />} />
       </Routes>
     </Router>
-  </StrictMode>
-);
+    // </StrictMode>
+  );
+}
